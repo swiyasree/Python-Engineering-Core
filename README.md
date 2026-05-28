@@ -11,4 +11,12 @@ Explored Python project structure, created a dummy backend structure to understa
 - Learned to handle returned object types correctly. Example: `get_order()` returns an `Order` object, so fields are accessed like `order.name`, while `get_payment_msg()` returns a string directly.
 - Practiced testing endpoints in FastAPI. Example: GET endpoint tested with `/?order_id=1`, while POST endpoint `/payment_msg` was tested through Swagger docs at `/docs`.
 
-Ran <uvicorn app.api.routes:app --reload> to see how the trace appears. Can see the end-point locally with the url. <http://127.0.0.1:8000/?order_id=1> has required request param order_id. 
+Ran <uvicorn app.api.order_routes:app --reload> to see how the trace appears. Can see the end-point locally with the url. <http://127.0.0.1:8000/?order_id=1> has required request param order_id. 
+
+# Day 3
+- Type hints → define expected data types (`str`, `int`, `list[str]`) but Python does not enforce them automatically.
+- Pydantic (`BaseModel`) → automatically validates and converts data.
+- No need to write `__init__()` manually in Pydantic models.
+- `Field()` → used for validation rules like min/max length or value range.
+- `EmailStr` → validates email format, not whether the email actually exists.
+- FastAPI + Pydantic together handle request/response validation cleanly.

@@ -1,12 +1,13 @@
+from pydantic import BaseModel, Field, EmailStr
 
-class Order:
-    def __init__(self, order_id: int, name: str, email: str,contact: str, items: list[str], total: float, location: str, payment_status: str):
-        self.order_id = order_id
-        self.name = name
-        self.email = email
-        self.contact = contact
-        self.items = items
-        self.total = total
-        self.location = location
-        self.payment_status = payment_status
+class Order(BaseModel):
+        order_id: int
+        name: str = Field(min_length=3, max_length=60)
+        email: EmailStr
+        contact: str
+        items: list[str]
+        total: float = Field(ge=1, le=100)
+        location: str
+        payment_status: str
+
         
